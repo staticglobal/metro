@@ -56,7 +56,6 @@ class VirtualboxTarget(RemoteTarget):
         self.ifname = subprocess.check_output(ifcmd, shell=True).strip()
         self.vbm("hostonlyif ipconfig %s --ip 10.99.99.1" % (self.ifname,))
         self.cmd("ip link set %s up" % (self.ifname,))
-        self.cmd("ip addr add 10.99.99.1/24 dev %s" % (self.ifname,))
 
         # setup vm networking
         self.vbm("modifyvm %s --nic1 nat --nic2 hostonly" % (self.name))
